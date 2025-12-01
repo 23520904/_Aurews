@@ -41,7 +41,12 @@ export function toggleNav() {
       link.classList.add("active");
     }
     //xet cho trang contact.html
-    if (currentPath.includes("contact.html") || currentPath.includes("post.html") || currentPath.includes("search.html") || currentPath.includes("about.html")) {
+    if (
+      currentPath.includes("contact.html") ||
+      currentPath.includes("post.html") ||
+      currentPath.includes("search.html") ||
+      currentPath.includes("about.html")
+    ) {
       link.classList.remove("active"); // Xóa active từ tất cả
     }
   });
@@ -163,34 +168,6 @@ class CategoryPage {
           : "none";
     }
   }
-  renderCategory() {
-    const newsTitle = document.querySelector(".js-title-container");
-    const newsContainer = document.querySelector(".js-news-container");
-    const data = fullNews; // Sử dụng fullNews đã bao gồm bài mới
-    const param = getType();
-
-    // Lọc tin phù hợp (logic này vẫn đúng)
-    const filtered = data.filter(
-      (news) =>
-        news.type === param || news.type1 === param || news.type2 === param
-    );
-
-    // SỬA LỖI LOGIC TẠI ĐÂY: Thêm data-id vào thẻ div
-    const html = filtered
-      .map((newsShow) => createArticleCard(newsShow))
-      .join("");
-
-    if (newsTitle) {
-      newsTitle.innerHTML = `
-                    <h1>${param}</h1>
-                    <p>${subtitle[param]}</p>
-               `;
-    }
-
-    if (newsContainer) {
-      newsContainer.innerHTML = html || "<p>No articles found.</p>";
-    }
-  }
 
   /* -----------------------
     TRENDING - WITH LOADING
@@ -255,11 +232,11 @@ class CategoryPage {
     try {
       if (!this.category) return; // Exit if category is null
 
-      if (this.category.toLocaleLowerCase() === "latest") {
-        const relatedSection = document.getElementById("you-may-like");
-        if (relatedSection) relatedSection.classList.add("hidden");
-        return;
-      }
+      //   if (this.category.toLocaleLowerCase() === "latest") {
+      //     const relatedSection = document.getElementById("you-may-like");
+      //     if (relatedSection) relatedSection.classList.add("hidden");
+      //     return;
+      //   }
       // Simulate API delay
       await new Promise((res) => setTimeout(res, 1000));
 
@@ -283,21 +260,6 @@ class CategoryPage {
     }
   }
 
-  getOtherCategories() {
-    const allCategories = [
-      "Business News",
-      "Money and Markets",
-      "Tech and Innovation",
-      "A.I.",
-      "Lifestyle",
-      "Politics",
-    ];
-    const others = allCategories.filter(
-      (cat) => cat.toLowerCase() !== this.category.toLowerCase()
-    );
-
-    return others.slice(0, 3);
-  }
   /* -------------  ----------
         EVENTS
     ------------------------ */
@@ -312,8 +274,12 @@ class CategoryPage {
 
       // Scroll mượt xuống vùng content mới
       setTimeout(() => {
-        const cards = document.querySelectorAll(".article__card");
-        const anchorIndex = this.displayedArticles.length - this.perPage;
+        const cards = document.querySelectorAll(".article-card");
+        const anchorIndex =
+          this.displayedArticles.length % 4 === 0
+            ? this.displayedArticles.length - this.perPage
+            : this.displayedArticles.length -
+              (this.displayedArticles.length % 4);
 
         if (cards[anchorIndex]) {
           cards[anchorIndex].scrollIntoView({
@@ -321,7 +287,7 @@ class CategoryPage {
             block: "start",
           });
         }
-      }, 120);
+      }, 400);
     });
   }
 
@@ -334,31 +300,6 @@ class CategoryPage {
 
     const emptyState = document.getElementById("empty-state");
     if (emptyState) emptyState.style.display = "flex";
-  }
-
-  onClickHandler() {
-    // SỬA LỖI LOGIC TẠI ĐÂY: Đơn giản hóa hoàn toàn
-    const newsContainer = document.querySelector(".js-news-container");
-    if (!newsContainer) return; // Nếu không có container, thoát an toàn
-
-    newsContainer.addEventListener("click", function (event) {
-      // Tìm phần tử .new__box gần nhất với phần tử được click
-      const clickedBox = event.target.closest(".new__box");
-
-      if (clickedBox) {
-        const newsId = clickedBox.dataset.id; // Lấy id từ data-id
-        if (newsId) {
-          // Kiểm tra xem ID có phải là của bài viết local hay không
-          if (String(newsId).startsWith("local-")) {
-            // Nếu là bài viết local, ta cần xử lý khác hoặc lưu ID vào session/local storage để trang Post.html đọc
-            localStorage.setItem("selectedPostId", newsId);
-            window.location.href = `./post.html?type=local`;
-          } else {
-            window.location.href = `./post.html?id=${newsId}`;
-          }
-        }
-      }
-    });
   }
 }
 
