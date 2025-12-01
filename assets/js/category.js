@@ -163,34 +163,6 @@ class CategoryPage {
           : "none";
     }
   }
-  renderCategory() {
-    const newsTitle = document.querySelector(".js-title-container");
-    const newsContainer = document.querySelector(".js-news-container");
-    const data = fullNews; // Sử dụng fullNews đã bao gồm bài mới
-    const param = getType();
-
-    // Lọc tin phù hợp (logic này vẫn đúng)
-    const filtered = data.filter(
-      (news) =>
-        news.type === param || news.type1 === param || news.type2 === param
-    );
-
-    // SỬA LỖI LOGIC TẠI ĐÂY: Thêm data-id vào thẻ div
-    const html = filtered
-      .map((newsShow) => createArticleCard(newsShow))
-      .join("");
-
-    if (newsTitle) {
-      newsTitle.innerHTML = `
-                    <h1>${param}</h1>
-                    <p>${subtitle[param]}</p>
-               `;
-    }
-
-    if (newsContainer) {
-      newsContainer.innerHTML = html || "<p>No articles found.</p>";
-    }
-  }
 
   /* -----------------------
     TRENDING - WITH LOADING
@@ -336,30 +308,6 @@ class CategoryPage {
     if (emptyState) emptyState.style.display = "flex";
   }
 
-  onClickHandler() {
-    // SỬA LỖI LOGIC TẠI ĐÂY: Đơn giản hóa hoàn toàn
-    const newsContainer = document.querySelector(".js-news-container");
-    if (!newsContainer) return; // Nếu không có container, thoát an toàn
-
-    newsContainer.addEventListener("click", function (event) {
-      // Tìm phần tử .new__box gần nhất với phần tử được click
-      const clickedBox = event.target.closest(".new__box");
-
-      if (clickedBox) {
-        const newsId = clickedBox.dataset.id; // Lấy id từ data-id
-        if (newsId) {
-          // Kiểm tra xem ID có phải là của bài viết local hay không
-          if (String(newsId).startsWith("local-")) {
-            // Nếu là bài viết local, ta cần xử lý khác hoặc lưu ID vào session/local storage để trang Post.html đọc
-            localStorage.setItem("selectedPostId", newsId);
-            window.location.href = `./post.html?type=local`;
-          } else {
-            window.location.href = `./post.html?id=${newsId}`;
-          }
-        }
-      }
-    });
-  }
 }
 
 /* -----------------------
