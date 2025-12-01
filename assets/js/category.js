@@ -41,7 +41,12 @@ export function toggleNav() {
       link.classList.add("active");
     }
     //xet cho trang contact.html
-    if (currentPath.includes("contact.html") || currentPath.includes("post.html") || currentPath.includes("search.html") || currentPath.includes("about.html")) {
+    if (
+      currentPath.includes("contact.html") ||
+      currentPath.includes("post.html") ||
+      currentPath.includes("search.html") ||
+      currentPath.includes("about.html")
+    ) {
       link.classList.remove("active"); // Xóa active từ tất cả
     }
   });
@@ -227,11 +232,11 @@ class CategoryPage {
     try {
       if (!this.category) return; // Exit if category is null
 
-      if (this.category.toLocaleLowerCase() === "latest") {
-        const relatedSection = document.getElementById("you-may-like");
-        if (relatedSection) relatedSection.classList.add("hidden");
-        return;
-      }
+      //   if (this.category.toLocaleLowerCase() === "latest") {
+      //     const relatedSection = document.getElementById("you-may-like");
+      //     if (relatedSection) relatedSection.classList.add("hidden");
+      //     return;
+      //   }
       // Simulate API delay
       await new Promise((res) => setTimeout(res, 1000));
 
@@ -255,21 +260,6 @@ class CategoryPage {
     }
   }
 
-  getOtherCategories() {
-    const allCategories = [
-      "Business News",
-      "Money and Markets",
-      "Tech and Innovation",
-      "A.I.",
-      "Lifestyle",
-      "Politics",
-    ];
-    const others = allCategories.filter(
-      (cat) => cat.toLowerCase() !== this.category.toLowerCase()
-    );
-
-    return others.slice(0, 3);
-  }
   /* -------------  ----------
         EVENTS
     ------------------------ */
@@ -284,7 +274,7 @@ class CategoryPage {
 
       // Scroll mượt xuống vùng content mới
       setTimeout(() => {
-        const cards = document.querySelectorAll(".article__card");
+        const cards = document.querySelectorAll(".article-card");
         const anchorIndex = this.displayedArticles.length - this.perPage;
 
         if (cards[anchorIndex]) {
@@ -293,7 +283,7 @@ class CategoryPage {
             block: "start",
           });
         }
-      }, 120);
+      }, 300);
     });
   }
 
@@ -307,7 +297,6 @@ class CategoryPage {
     const emptyState = document.getElementById("empty-state");
     if (emptyState) emptyState.style.display = "flex";
   }
-
 }
 
 /* -----------------------
