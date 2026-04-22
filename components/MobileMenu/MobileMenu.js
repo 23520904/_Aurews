@@ -3,7 +3,7 @@ function injectStyle() {
 
   const link = document.createElement("link");
   link.id = "mobile-menu-style";
-  link.href = "../components/MobileMenu/MobileMenu.css";
+  link.href = "components/MobileMenu/MobileMenu.css";
   link.rel = "stylesheet";
   document.head.appendChild(link);
 }
@@ -29,17 +29,15 @@ function createMobileMenu() {
         </button>
       </div>
       <ul class="mobile-nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">Latest</a></li>
-        <li><a href="#">Business News</a></li>
-        <li><a href="#">Money & Markets</a></li>
-        <li><a href="#">Tech & Innovation</a></li>
-        <li><a href="#">A.I.</a></li>
-        <li><a href="#">Lifestyle</a></li>
-        <li><a href="#">Politics</a></li>
-        <li><a href="#">Email</a></li>
-        <li><a href="#">Podcast</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="./category.html?type=Latest">Latest</a></li>
+        <li><a href="./category.html?type=Business News">Business News</a></li>
+        <li><a href="./category.html?type=Money and Markets">Money & Markets</a></li>
+        <li><a href="./category.html?type=Tech and Innovation">Tech & Innovation</a></li>
+        <li><a href="./category.html?type=A.I.">A.I.</a></li>
+        <li><a href="./category.html?type=Lifestyle">Lifestyle</a></li>
+        <li><a href="./category.html?type=Politics">politics</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="mobile-menu-footer">
         <div

@@ -2,7 +2,7 @@ function injectStyles() {
   if (document.getElementById("trending-card-style")) return;
   const link = document.createElement("style");
   link.id = "trending-card-style";
-  link.href = "../components/Category/TrendingCard/trendingCard.css";
+  link.href = "components/Category/TrendingCard/trendingCard.css";
   link.rel = "stylesheet";
   document.head.appendChild(link);
 }

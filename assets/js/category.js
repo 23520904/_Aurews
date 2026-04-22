@@ -36,7 +36,8 @@ export function toggleNav() {
       !param &&
       (href.includes("Index.html") ||
         href.endsWith("/") ||
-        href.includes("index.html"))
+        href.includes("index.html") ||
+        href.endsWith("./"))
     ) {
       link.classList.add("active");
     }
@@ -279,7 +280,7 @@ class CategoryPage {
           this.displayedArticles.length % 4 === 0
             ? this.displayedArticles.length - this.perPage
             : this.displayedArticles.length -
-              (this.displayedArticles.length % 4);
+            (this.displayedArticles.length % 4);
 
         if (cards[anchorIndex]) {
           cards[anchorIndex].scrollIntoView({

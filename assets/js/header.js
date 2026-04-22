@@ -50,6 +50,7 @@ function toggleMobileNav() {
     const homeLink = Array.from(mobileNavLinks).find(
       (link) =>
         link.textContent.trim() === "Home" ||
+        link.getAttribute("href")?.endsWith("/") ||
         link.getAttribute("href")?.includes("index.html")
     );
     if (homeLink) {
@@ -94,9 +95,9 @@ function initMobileMenuLinks() {
     // Set URL nếu href là "#" hoặc rỗng
     if (!currentHref || currentHref === "#" || currentHref.trim() === "") {
       if (linkText === "Home") {
-        link.setAttribute("href", "./index.html");
+        link.setAttribute("href", "/");
       } else if (linkText === "Contact") {
-        link.setAttribute("href", "./contact.html");
+        link.setAttribute("href", "contact.html");
       } else {
         // Lấy type từ mapping - normalize "Money & Markets" to "Money and Markets"
         let mappedType = typeMapping[linkText];

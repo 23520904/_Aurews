@@ -228,7 +228,7 @@ function injectStyle() {
 
   const link = document.createElement("link");
   link.id = "banner-style";
-  link.href = "../components/Banner/Banner.css";
+  link.href = "components/Banner/Banner.css";
   link.rel = "stylesheet";
   document.head.appendChild(link);
 }

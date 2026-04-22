@@ -2,7 +2,7 @@ function injectStyle() {
   if (document.getElementById("related-card-style")) return;
   const link = document.createElement("link");
   link.id = "related-card-style";
-  link.href = "../components/Category/RelatedCard/relatedCard.css";
+  link.href = "components/Category/RelatedCard/relatedCard.css";
   link.rel = "stylesheet";
   document.head.appendChild(link);
 }

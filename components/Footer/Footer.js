@@ -3,7 +3,7 @@ function injectStyle() {
 
   const link = document.createElement("link");
   link.id = "footer-style";
-  link.href = "../components/Footer/Footer.css";
+  link.href = "components/Footer/Footer.css";
   link.rel = "stylesheet";
   document.head.appendChild(link);
 }
@@ -67,5 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if (container) {
     console.log("Loaded");
     container.innerHTML = createFooter();
+    
+    // Add navigation to contact.html on Subscribe button click
+    const subscribeForm = container.querySelector(".newsletter__formbox");
+    if (subscribeForm) {
+      subscribeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        window.location.href = "contact.html";
+      });
+    }
   }
 });

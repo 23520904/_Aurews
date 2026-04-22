@@ -3,7 +3,7 @@ function injectStyles() {
 
   const link = document.createElement("link");
   link.id = "article-card-style";
-  link.href = "../components/Category/ArticleCard/articleCard.css";
+  link.href = "components/Category/ArticleCard/articleCard.css";
   link.rel = "stylesheet";
   document.head.appendChild(link);
 }

@@ -8,7 +8,7 @@ Dự án này nhấn mạnh vào việc tự xây dựng các thành phần (com
 
 [DEMO](https://youtu.be/g8wDAmSOrPc?si=zG3e8Uv7FiPYaYA3)
 
-[LINK DEPLOY NETLIFY](https://mraver.github.io/Aurews/pages/)
+[LINK DEPLOY NETLIFY](https://aurews.id.vn/)
 
 ![PREVIEW](/assets/img/screenshot.png)
 
@@ -54,7 +54,13 @@ Aurews/
 ┃ ┣ MobileMenu/
 ┃ ┣ Navbar/
 ┃ ┗ PopUpOverlay/
-┣ pages/               # Chứa các file HTML của các trang
+┣ about.html           # Trang About
+┣ addpost.html         # Trang Add Post
+┣ category.html        # Trang Category
+┣ contact.html         # Trang Contact
+┣ index.html           # Trang chủ
+┣ post.html            # Trang Post
+┣ search.html          # Trang Search
 ┣ LICENSE              # Giấy phép mã nguồn
 ┣ package.json         # Thông tin dự án và dependencies (nếu có)
 ┗ README.md            # Tài liệu hướng dẫn
@@ -95,7 +101,7 @@ Dự án này là một trang web tĩnh, bạn có thể chạy nó theo một t
 
 * Nếu bạn chưa có, hãy cài đặt extension Live Server từ Marketplace.
 
-* Trong cây thư mục của VS Code, tìm đến file pages/index.html.
+* Trong cây thư mục của VS Code, tìm đến file index.html.
 
 * Nhấn chuột phải vào file index.html và chọn "Open with Live Server".
 
